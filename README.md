@@ -1,3 +1,5 @@
+![Insert and Delete Animation](https://github.com/seedante/CollectionViewAnimation/blob/master/Insert%20and%20Delete%20Animation.gif)
+
 ## Animating insert/delete/move item in UICollectionView
 
 After I create [UIView refactor/destruct extension](https://github.com/seedante/UIView-Refacotr-Destruct-Animation.git), I think here is a good scene. Thanks for [Animating Collection Views](https://www.objc.io/issues/12-animations/collectionview-animations/), I get a lot of help from this article.
@@ -33,12 +35,15 @@ In CollectionView's delegate, override the follow method, assume that `animation
 
 **Move Animation:**
 
+![Move Animation](https://github.com/seedante/CollectionViewAnimation/blob/master/Move%20Animation.gif)
+
 Just move, the rest work is done automatically. If you don't like this animation, I like default animation actually, go to **SDEFlowLayoutWithAnimation.swift** and delete the relative code, there are comments to tell you how do it.
 
 ### Issue:
 
 Insert animation is interrupted always. It should be like this:
 
+![Fix Insert Animation Issue](https://github.com/seedante/CollectionViewAnimation/blob/master/Fix%20Insert%20Animation%20Issue.gif)
 
 Move animation have the same problem. I don't known why. I guess because of layout animation behind it. I try to use Core Animation instead of UIView block animation. It works. But when you insert several cells, it's also interrupted, at last, animation is totally removed. I try to put refactor method in main queue, it works fine also. But it bring a little trouble: before refactor animation, cells behind it shake, I don't want this. There is no prefect way for now. If you find the way, please pull a request or email me, seedante@gmail.com.
 
@@ -87,11 +92,7 @@ In the sample, I just test for single cell action, test for multiple cells actio
 
 ### 缺陷：
 
-目前的插入动画有点问题：
-
-
-
-这个动画总是被打断，没有按照预期的方式完成。移动动画也有相同的问题，我不知道为什么，猜测是由于后续的布局动画造成的。本来是用 UIView block animation 实现的，我尝试用 Core Animation 来实现，不会被打断，但是在添加几个  cell 后发现，动画也开始被打断，到最后动画根本就不会出现。我后来意识到是不是没有放在主线程里，尝试后发现再也不会被打断了，但是也带来一点点副作用，在重组动画开始前，后面位置的 cells 会晃动，我不是我想要的，当然主要是因为晃动的样子像卡壳了，目前没找到完美的解决办法。如果你找到了方法，麻烦提个请求，或者来介绍这个动画的博客下留言。
+目前的插入动画有点问题，这个动画总是被打断，没有按照预期的方式完成，移动动画也有相同的问题。我不知道为什么，猜测是由于后续的布局动画造成的。本来是用 UIView block animation 实现的，我尝试用 Core Animation 来实现，不会被打断，但是在添加几个  cell 后发现，动画也开始被打断，到最后动画根本就不会出现。我后来意识到是不是没有放在主线程里，尝试后发现再也不会被打断了，但是也带来一点点副作用，在重组动画开始前，后面位置的 cells 会晃动，我不是我想要的，当然主要是因为晃动的样子像卡壳了，目前没找到完美的解决办法。如果你找到了方法，麻烦提个请求，或者来介绍这个[动画的博客](http://www.jianshu.com/p/4323c54ad643)下留言。
 
 ### 多 cell 操作
 
