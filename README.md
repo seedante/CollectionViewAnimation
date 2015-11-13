@@ -1,6 +1,6 @@
 ## Animating insert/delete/move item in UICollectionView
 
-After I create UIView refactor/destruct extension, I think here is a good scene. Thanks for [Animating Collection Views](https://www.objc.io/issues/12-animations/collectionview-animations/), I get a lot of help from this article.
+After I create [UIView refactor/destruct extension](https://github.com/seedante/UIView-Refacotr-Destruct-Animation.git), I think here is a good scene. Thanks for [Animating Collection Views](https://www.objc.io/issues/12-animations/collectionview-animations/), I get a lot of help from this article.
 
 ### Installation and Usage
 Drag **SDEFlowLayoutWithAnimation.swift** and **UIViewRefactorAndDestructExtension.swift** into your project.
