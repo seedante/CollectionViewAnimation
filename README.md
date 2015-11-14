@@ -51,6 +51,11 @@ Move animation have the same problem. I don't known why. I guess because of layo
 
 In the sample, I just test for single cell action, test for multiple cells action is not completed. There may be something wrong for multiple cells action.
 
+### Requirements
+
+- iOS 8.0+
+- Swift 2.0+
+
 ## UICollectionView 插入/删除/移动项目动画
 在 UIView refacot/destruct 动画扩展完成之后，我想这个场景是比较合适的。感谢 [Collection View 动画](http://objccn.io/issue-12-5/)，我最初的想法是从这篇文章得到的，虽然我这里的手法其实和文章里的不同，但帮助我解决了一半问题。
 
@@ -97,4 +102,9 @@ In the sample, I just test for single cell action, test for multiple cells actio
 ### 多 cell 操作
 
 示例里我只针对单个 cell 进行了测试，多个 cells 的操作的测试并不完整，只稍微测试了删除多个 cell，目前工作正常。还有涉及 section 操作时没有测试。如果有这方面的需求，自己尝试下吧。
+
+### 使用条件
+
+- iOS 8.0+
+- Swift 2.0+
 
