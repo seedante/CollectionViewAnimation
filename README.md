@@ -53,7 +53,6 @@ In the sample, I just test for single cell action, test for multiple cells actio
 
 ### Requirements
 
-- iOS 8.0+
 - Swift 2.0+
 
 ## UICollectionView 插入/删除/移动项目动画
@@ -105,6 +104,5 @@ In the sample, I just test for single cell action, test for multiple cells actio
 
 ### 使用条件
 
-- iOS 8.0+
 - Swift 2.0+
 
