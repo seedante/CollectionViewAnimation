@@ -1,11 +1,11 @@
-![Insert and Delete Animation](https://github.com/seedante/CollectionViewAnimation/blob/master/Insert%20and%20Delete%20Animation.gif)
+![Insert and Delete Animation](https://github.com/seedante/CollectionViewAnimation/blob/master/AnimationGif/Insert%20and%20Delete%20Animation.gif?raw=true)
 
 ## Animating insert/delete/move item in UICollectionView
 
 After I create [UIView refactor/destruct extension](https://github.com/seedante/UIView-Refacotr-Destruct-Animation.git), I think here is a good scene. Thanks for [Animating Collection Views](https://www.objc.io/issues/12-animations/collectionview-animations/), I get a lot of help from this article.
 
 ### Installation and Usage
-Drag **SDEFlowLayoutWithAnimation.swift** and **UIViewRefactorAndDestructExtension.swift** into your project.
+Drag Folder "FileToImport" with **SDEFlowLayoutWithAnimation.swift** and **UIViewRefactorAndDestructExtension.swift** into your project.
 
 Set UICollectionView's collectionViewLayout to `SDEFlowLayoutWithAnimation` in your storyboard or in your code.
 
@@ -35,7 +35,7 @@ In CollectionView's delegate, override the follow method, assume that `animation
 
 **Move Animation:**
 
-![Move Animation](https://github.com/seedante/CollectionViewAnimation/blob/master/Move%20Animation.gif)
+![Move Animation](https://github.com/seedante/CollectionViewAnimation/blob/master/AnimationGif/Move%20Animation.gif?raw=true)
 
 Just move, the rest work is done automatically. If you don't like this animation, I like default animation actually, go to **SDEFlowLayoutWithAnimation.swift** and delete the relative code, there are comments to tell you how do it.
 
@@ -43,7 +43,7 @@ Just move, the rest work is done automatically. If you don't like this animation
 
 Insert animation is interrupted always. It should be like this:
 
-![Fix Insert Animation Issue](https://github.com/seedante/CollectionViewAnimation/blob/master/Fix%20Insert%20Animation%20Issue.gif)
+![Fix Insert Animation Issue](https://github.com/seedante/CollectionViewAnimation/blob/master/AnimationGif/Fix%20Insert%20Animation%20Issue.gif?raw=true)
 
 Move animation have the same problem. I don't known why. I guess because of layout animation behind it. I try to use Core Animation instead of UIView block animation. It works. But when you insert several cells, it's also interrupted, at last, animation is totally removed. I try to put refactor method in main queue, it works fine also. But it bring a little trouble: before refactor animation, cells behind it shake, I don't want this. There is no prefect way for now. If you find the way, please pull a request or email me, seedante@gmail.com.
 
@@ -53,13 +53,14 @@ In the sample, I just test for single cell action, test for multiple cells actio
 
 ### Requirements
 
-- Swift 2.0+
+- Swift 2.2
+- iOS 8.0+
 
 ## UICollectionView 插入/删除/移动项目动画
 在 UIView refacot/destruct 动画扩展完成之后，我想这个场景是比较合适的。感谢 [Collection View 动画](http://objccn.io/issue-12-5/)，我最初的想法是从这篇文章得到的，虽然我这里的手法其实和文章里的不同，但帮助我解决了一半问题。
 
 ### 安装和使用
-把 **SDEFlowLayoutWithAnimation.swift** 和 **UIViewRefactorAndDestructExtension.swift** 这两个文件拖进你的项目里就好了。
+把 FileToImport 文件夹(**SDEFlowLayoutWithAnimation.swift** 和 **UIViewRefactorAndDestructExtension.swift**)拖进你的项目里就好了。
 
 设置`collectionViewLayout`: 在你的 storyboard 里或代码里设置都行。不会的话，示例工程里是通过代码设置的，还不会不要问我，先去学习吧。
 
@@ -104,5 +105,6 @@ In the sample, I just test for single cell action, test for multiple cells actio
 
 ### 使用条件
 
-- Swift 2.0+
+- Swift 2.2
+- iOS 8.0+
 
