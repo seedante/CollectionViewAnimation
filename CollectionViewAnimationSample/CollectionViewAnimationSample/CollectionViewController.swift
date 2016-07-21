@@ -29,9 +29,9 @@ class CollectionViewController: UICollectionViewController {
         self.collectionView?.collectionViewLayout = animationLayout!
 
         // Do any additional setup after loading the view.
-        let insertItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertItem")
-        let deleteItem = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: "deleteItem")
-        let moveItem = UIBarButtonItem(title: "Move", style: .Plain, target: self, action: "moveItem")
+        let insertItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(CollectionViewController.insertItem))
+        let deleteItem = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: #selector(CollectionViewController.deleteItem))
+        let moveItem = UIBarButtonItem(title: "Move", style: .Plain, target: self, action: #selector(CollectionViewController.moveItem))
         self.navigationItem.rightBarButtonItems = [moveItem, deleteItem, insertItem]
     }
 
@@ -47,25 +47,27 @@ class CollectionViewController: UICollectionViewController {
         let randomSection = Int(arc4random_uniform(UInt32(sectionCount)))
         let previousCount = itemCountInSection[randomSection]
         if previousCount > 0{
-
             let randomItem = Int(arc4random_uniform(UInt32(previousCount)))
             let deletedIndexPath = NSIndexPath(forItem: randomItem, inSection: randomSection)
             let visibleIndexPaths = self.collectionView?.indexPathsForVisibleItems()
-            let filteredIndexPaths = visibleIndexPaths?.filter({
-                indexPath in
-                return indexPath.section == deletedIndexPath.section && indexPath.item == deletedIndexPath.item
-            })
-
-            self.itemCountInSection[randomSection] = previousCount - 1
+            let filteredIndexPaths = visibleIndexPaths?.filter({$0.isEqualTo(deletedIndexPath)})
             if filteredIndexPaths?.count > 0{
                 let deletedCell = self.collectionView?.cellForItemAtIndexPath(deletedIndexPath)
                 let animationTime: NSTimeInterval = 0.5
                 deletedCell?.destructWithTime(animationTime)
-                self.collectionView?.performSelector("deleteItemsAtIndexPaths:", withObject: [deletedIndexPath], afterDelay: animationTime)
+                self.navigationItem.rightBarButtonItems?[1].enabled = false
+                self.performSelector(#selector(CollectionViewController.deleteCell(atIndexPath:)), withObject: deletedIndexPath, afterDelay: animationTime)
             }else{
+                self.itemCountInSection[randomSection] = previousCount - 1
                 self.collectionView?.deleteItemsAtIndexPaths([deletedIndexPath])
             }
         }
+    }
+    
+    func deleteCell(atIndexPath indexPath: NSIndexPath){
+        self.itemCountInSection[indexPath.section] -= 1
+        self.collectionView?.deleteItemsAtIndexPaths([indexPath])
+        self.navigationItem.rightBarButtonItems?[1].enabled = true
     }
 
     func moveItem(){
@@ -83,7 +85,7 @@ class CollectionViewController: UICollectionViewController {
 
             self.collectionView?.moveItemAtIndexPath(fromIndexPath, toIndexPath: toIndexPath)
         }else{
-            print("NO ENOUGHT ITEM, TRY AGAIN")
+            print("NO ENOUGHT ITEM. TRY AGAIN.")
         }
     }
 

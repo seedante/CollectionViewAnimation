@@ -142,7 +142,7 @@ extension UIView {
             }
         }
         //can't rely on dispatch_after, which can't guarantee the exact execution time
-        self.performSelector("cleanUp:", withObject: snapshots, afterDelay: cleanTime)
+        self.performSelector(#selector(UIView.cleanUp(_:)), withObject: snapshots, afterDelay: cleanTime)
     }
 
     //MARK: Destruct
@@ -215,7 +215,7 @@ extension UIView {
             }
         }
 
-        self.performSelector("windUp:", withObject: snapshots, afterDelay: windUpTime)
+        self.performSelector(#selector(UIView.windUp(_:)), withObject: snapshots, afterDelay: windUpTime)
     }
 
 
